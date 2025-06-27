@@ -1,0 +1,21 @@
+-- Main.hs
+
+-- Define a Wallet data type
+data Wallet = Wallet
+  { username :: String
+  , password :: String
+  } deriving (Eq)
+
+-- Hide password when printing
+instance Show Wallet where
+  show (Wallet u _) = "Wallet { username = \"" ++ u ++ "\" }"
+
+-- Auto-executing main (no user input)
+main :: IO ()
+main = do
+  let wallets = []
+  let testWallet = Wallet "Eze@7689" "1970"
+  let updatedWallets = testWallet : wallets
+  putStrLn "✅ Simulated Wallet Created!"
+  putStrLn "Wallets in the system:"
+  mapM_ print updatedWallets
