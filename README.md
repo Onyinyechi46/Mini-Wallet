@@ -11,53 +11,7 @@ data Wallet = Wallet {
 ✅ Task 2: Create a Sign-Up Function
 Prompt the user for username and password, check if the username exists, and add to the list if not.
 
-haskell
-Copy
-Edit
-signUp :: [Wallet] -> IO [Wallet]
-signUp existingWallets = do
-    putStrLn "Enter a username:"
-    u <- getLine
-    if any (\w -> username w == u) existingWallets
-        then do
-            putStrLn "Username already exists. Try again."
-            return existingWallets
-        else do
-            putStrLn "Enter a password:"
-            p <- getLine
-            let newWallet = Wallet u p
-            putStrLn "Wallet created successfully!"
-            return (newWallet : existingWallets)
-            
 ✅ Task 3: Add a Main Menu
-Loop over options until user quits.
 
-haskell
-Copy
-Edit
-mainMenu :: [Wallet] -> IO ()
-mainMenu wallets = do
-    putStrLn "\n=== Wallet Sign-Up Menu ==="
-    putStrLn "1. Create Wallet"
-    putStrLn "2. Exit"
-    choice <- getLine
-    case choice of
-        "1" -> do
-            newWallets <- signUp wallets
-            mainMenu newWallets
-        "2" -> putStrLn "Goodbye!"
-        _   -> do
-            putStrLn "Invalid option. Try again."
-            mainMenu wallets
 ✅ Task 4: Entry Point
-haskell
-Copy
-Edit
-main :: IO ()
-main = mainMenu []
-🔧 Optional Stretch Goals
-Save/load wallets to/from a file (Data.Aeson for JSON or simple writeFile).
 
-Hash passwords using libraries like cryptohash.
-
-Add login functionality.
